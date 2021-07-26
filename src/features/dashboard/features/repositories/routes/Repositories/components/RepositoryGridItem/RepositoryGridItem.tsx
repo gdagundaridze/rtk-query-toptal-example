@@ -10,7 +10,7 @@ const RepositoryGridItem: FC<{ repo: Repository }> = ({
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="subtitle1" gutterBottom aria-label="repository-name">
           {repo.name}
           <Box marginLeft={1} clone>
             <Chip label={repo.private ? 'Private' : 'Public'} size="small" />
