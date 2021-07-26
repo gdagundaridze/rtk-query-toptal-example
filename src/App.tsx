@@ -7,6 +7,7 @@ import { QueryParamProvider } from 'use-query-params';
 import './index.css';
 import Auth from './features/auth/Auth';
 import UserMiddleware from './features/auth/components/UserMiddleware/UserMiddleware';
+import Dashboard from './features/dashboard/Dashboard';
 import FullscreenProgress from './shared/components/FullscreenProgress/FullscreenProgress';
 import { persistor, store } from './shared/redux/store';
 
@@ -19,6 +20,7 @@ const App = () => {
             <CssBaseline />
             <UserMiddleware>
               <Auth />
+              <Dashboard />
             </UserMiddleware>
           </QueryParamProvider>
         </Router>
