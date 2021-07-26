@@ -8,7 +8,7 @@ import { repositoryMockApiData } from '../../src/mocks/server/github/repository/
 import { repositoryMockApiHandlerDefaults } from '../../src/mocks/server/github/repository/handlers';
 
 export const findAllDataRows = async () => {
-  return await screen.findAllByRole('heading', { name: /repository-name/i });
+  return await screen.findAllByRole('link', { name: /commit-link/i });
 }
 
 export const awaitDataRender = async (data: Repository[]) => {

@@ -38,5 +38,13 @@ describe('Feature/Repositories', () => {
 
     expect(await screen.findByText(/repositories/i)).toBeDefined();
   });
+
+  it('should render commits route', async () => {
+    act(() => {
+      arrange('/repositories/repositoryName');
+    });
+
+    expect(await screen.findByText(/commits/i)).toBeDefined();
+  });
 });
 
