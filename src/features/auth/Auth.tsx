@@ -1,17 +1,18 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute';
 import Login from './routes/Login/Login';
 import OAuth from './routes/OAuth/OAuth';
 
 const Auth = () => {
   return (
     <Switch>
-      <Route exact path="/login">
+      <AuthenticatedRoute exact path="/login" onlyPublic>
         <Login />
-      </Route>
-      <Route exact path="/oauth">
+      </AuthenticatedRoute>
+      <AuthenticatedRoute exact path="/oauth" onlyPublic>
         <OAuth />
-      </Route>
+      </AuthenticatedRoute>
     </Switch>
   )
 }
