@@ -1,17 +1,44 @@
-import { Badge, Box, Chip, Divider, Grid, Typography } from '@material-ui/core';
+import { Badge, Box, Chip, Divider, Grid, Link, Typography } from '@material-ui/core';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import formatDistance from 'date-fns/formatDistance';
 import React, { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { repositoryApi } from '../../../../../../../../api/github/repository/api';
 import { Repository } from '../../../../../../../../api/github/repository/types';
+import { useGetRepositoryBranchesArgs } from '../../../Commits/hooks/useGetRepositoryBranches';
+import { useGetRepositoryCommitsArgs } from '../../../Commits/hooks/useGetRepositoryCommits';
 
 const RepositoryGridItem: FC<{ repo: Repository }> = ({
   repo
 }) => {
+  const getRepositoryCommitsArgs = useGetRepositoryCommitsArgs();
+  const prefetchGetRepositoryCommits = repositoryApi.usePrefetch('getRepositoryCommits');
+  const getRepositoryBranchesArgs = useGetRepositoryBranchesArgs();
+  const prefetchGetRepositoryBranches = repositoryApi.usePrefetch('getRepositoryBranches');
+
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <Typography variant="subtitle1" gutterBottom aria-label="repository-name">
-          {repo.name}
+          <Link
+            aria-label="commit-link"
+            component={RouterLink}
+            to={`/repositories/${repo.name}`}
+            onMouseEnter={() => {
+              prefetchGetRepositoryBranches({
+                ...getRepositoryBranchesArgs,
+                repo: repo.name,
+              });
+              prefetchGetRepositoryCommits({
+                ...getRepositoryCommitsArgs,
+                sha: repo.default_branch,
+                repo: repo.name,
+                page: 1
+              });
+            }}
+          >
+            {repo.name}
+          </Link>
           <Box marginLeft={1} clone>
             <Chip label={repo.private ? 'Private' : 'Public'} size="small" />
           </Box>
