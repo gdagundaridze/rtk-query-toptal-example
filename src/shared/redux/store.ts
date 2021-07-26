@@ -2,10 +2,15 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { Reducer } from 'redux';
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import { AUTH_API_REDUCER_KEY, authApi } from '../../api/auth/api';
+import { authReducer, authSlice } from '../../features/auth/slice';
 import { RESET_STATE_ACTION_TYPE } from './actions/resetState';
 import { unauthenticatedMiddleware } from './middleware/unauthenticatedMiddleware';
 
-const reducers = {};
+const reducers = {
+  [authSlice.name]: authReducer,
+  [AUTH_API_REDUCER_KEY]: authApi.reducer,
+};
 
 const combinedReducer = combineReducers<typeof reducers>(reducers);
 
@@ -24,7 +29,8 @@ export const store = configureStore({
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
     }
   }).concat([
-    unauthenticatedMiddleware
+    unauthenticatedMiddleware,
+    authApi.middleware
   ]),
 });
 
