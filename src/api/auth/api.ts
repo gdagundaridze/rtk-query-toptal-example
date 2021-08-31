@@ -5,7 +5,7 @@ export const AUTH_API_REDUCER_KEY = 'authApi';
 export const authApi = createApi({
   reducerPath: AUTH_API_REDUCER_KEY,
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://tp-github-auth.herokuapp.com',
+    baseUrl: 'https://tp-auth.herokuapp.com',
   }),
   endpoints: (builder) => ({
     getAccessToken: builder.query<AuthResponse, string>({

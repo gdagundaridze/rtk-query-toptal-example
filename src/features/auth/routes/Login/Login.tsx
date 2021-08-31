@@ -12,7 +12,7 @@ const Login = () => {
               Log in via Github
             </Typography>
             <Link
-              href={`https://github.com/login/oauth/authorize?client_id=b1bd2dfb1d172d1f1589&scope=repo`}
+              href={`https://github.com/login/oauth/authorize?client_id=b1bd2dfb1d172d1f1589`}
               color="textPrimary"
               data-testid="login-link"
               aria-label="Login Link"
