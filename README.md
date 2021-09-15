@@ -1,3 +1,9 @@
+This code is published as part of the [corresponding blog article](https://www.toptal.com/react/redux-toolkit-and-rtk-query) at the Toptal Engineering Blog.
+
+Visit https://www.toptal.com/blog and subscribe to our newsletter to read great articles!
+
+* * *
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
