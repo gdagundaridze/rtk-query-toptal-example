@@ -1,5 +1,5 @@
 import { RequestOptions } from '@octokit/types/dist-types/RequestOptions';
-import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
+import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError } from 'axios';
 import { omit } from 'lodash';
 import { RootState } from '../../shared/redux/store';
@@ -30,4 +30,10 @@ const axiosBaseQuery = (): BaseQueryFn<RequestOptions> => async (requestOpts, { 
   }
 };
 
-export const githubBaseQuery = axiosBaseQuery();
+export const GITHUB_API_REDUCER_KEY = 'githubApi';
+export const githubApi = createApi({
+  reducerPath: GITHUB_API_REDUCER_KEY,
+  baseQuery: axiosBaseQuery(),
+  endpoints: () => ({}),
+  refetchOnMountOrArgChange: 60
+});

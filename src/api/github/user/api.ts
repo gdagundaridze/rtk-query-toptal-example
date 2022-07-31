@@ -1,13 +1,9 @@
 import { endpoint } from '@octokit/endpoint';
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { githubBaseQuery } from '../index';
+import { githubApi } from '../index';
 import { ResponseWithLink } from '../types';
 import { User } from './types';
 
-export const USER_API_REDUCER_KEY = 'userApi';
-export const userApi = createApi({
-  reducerPath: USER_API_REDUCER_KEY,
-  baseQuery: githubBaseQuery,
+export const userApi = githubApi.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query<ResponseWithLink<User>, null>({
       query: () => {
